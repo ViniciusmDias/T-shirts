@@ -1,9 +1,10 @@
 <template>
-  <div>
-    NAME: <input type="text" v-model="name" /> <br/>
-    EMAIL: <input type="text" v-model="email" /> <br/>
-    PASSWORD: <input type="password" v-model="password" /> <br/>
-    <button @click="signup">signup</button>
+  <div class="signup form-group">
+    <h3>Para criar sua conta, cadastre-se abaixo!</h3>
+    <label for="name" class="col-form-label">Nome:</label><input id="name" class="form-control  form-group" type="text" v-model="name">
+    <label for="email" class="col-form-label">Email:</label><input id="name" class="form-control  form-group" type="text" v-model="email">
+    <label for="password" class="col-form-label">Password:</label><input id="password" class="form-control  form-group" type="password" v-model="password">
+    <button class="btn btn-primary form-group" @click="signup">Criar conta</button>
     {{ error }}
   </div>
 </template>
@@ -42,5 +43,15 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .signup {
+    width: 30%;
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    margin: 0 auto;
+
+  }
+</style>
 
 

@@ -1,19 +1,22 @@
+/* eslint-disable */
 <template>
   <div>
-    <button @click="logout">logout</button>
-    <h1>HELLO {{ name }}</h1>
-    <h2>your email is: {{ email }}</h2>
-
-    <div class="productsAdd">
-      <p>Nome:  <input type="text" v-model="nome" /> </p> 
-      <p>Preço: <input type="number" v-model="preco" /> </p> 
-      <p>Descrição: <input type="text" v-model="descricao" /> </p>
-      <p>Tamanho: <input type="text" v-model="tamanho" /> </p> 
-      <p>Imagem: <input type="text" v-model="imagem" /> </p> 
-      <button @click="createProduct">Criar Produto</button>
+    <h1>Olá {{ name }}</h1>
+    <h2>Seu usuário é: {{ email }}</h2>
+    <div class="buttons">
+      <button class="btn btn-primary form-group" @click="createProduct">Adicionar produto</button>
+      <button class="btn btn-primary form-group" @click="logout">Logout</button>
     </div>
-    {{ error }}
+    <ul class="lista-produtos">
+      <li class="lista-produtos-item" v-for="product of products">
+        <p class="painel-titulo" >{{ product.titulo }}</p>
+        <p class="painel-descricao" >{{ product.descricao }}</p>
+        <p class="painel-preco" >R$ {{ product.preco }}</p>
+        <p class="painel-tamanho" >Tamanho em estoque: {{ product.tamanho }}</p>
+        <button class="btn btn-primary form-group" @click="deleteProduct">Deletar produto</button>
 
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -27,6 +30,7 @@ export default {
       email: '',
       error: '',
 
+      products: [], 
 
       nome: '',
       preco: '',
@@ -46,7 +50,11 @@ export default {
       .then(res => {
         this.name = res.data.user.name;
         this.email = res.data.user.email;
-      })
+      }),
+    axios.get('http://localhost:5000/products', {})
+    .then(res => {
+      this.products = res.data.products;
+    })
   },
   methods: {
     logout() {
@@ -54,31 +62,34 @@ export default {
       this.$router.push('/login');
     },
     createProduct() {
-      let newProduct = {
-        nome: this.nome,
-        preco: this.preco,
-        descricao: this.descricao,
-        tamanho: this.tamanho,
-        imagem: this.imagem
-      }
-      axios.post('http://localhost:5000/', newProduct)
-        .then(res => {
-          this.error = '';
-          this.$router.push('/');
-        }, err => {
-          console.log(err.response)
-          this.error = err.response.data.error
-        })
-    }
+      this.$router.push('/product');
+    },
+    deleteProduct() {
+      axios.delete('http://localhost:5000/products/:id', {})
+      .then(res => {
+        this.products = res.data.products;
+      })
+    },
   }
 }
 </script>
 
 <style scoped>
-  .productsAdd {
-    width: 35%;
+  .btn {
+    margin-right: 1%;
+  }
+  .lista-produtos {
+    padding: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-top: 1rem;
+  }
+  .lista-produtos-item {
+    width: 50%;
+    margin-bottom: 1%;
+  }
+  .lista-produtos-item p {
+    margin: 0;
   }
 </style>

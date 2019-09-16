@@ -1,16 +1,16 @@
 <template>
     <div>
-    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre por parte da descrição">
+    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Procure um produto digitando uma parte da descrição">
 
     <ul class="lista-produtos">
-      <li class="lista-produtos-item" v-for="product of produtosComFiltro">
+        <li class="lista-produtos-item" v-for="product of products">
 
         <meu-painel :titulo="product.nome" :preco="product.preco" :tamanho="product.tamanho" :descricao="product.descricao">
-          
-
-          <imagem-responsiva :url="product.imagem" :titulo="products.nome" v-meu-transform:scale.animate="1.2"/>
             
-          
+
+            <imagem-responsiva :url="product.imagem" :titulo="products.nome" v-meu-transform:scale.animate="1.2"/>
+            
+            
         </meu-painel>
 
       </li>
@@ -66,11 +66,14 @@ export default {
     text-align: center;
   }
   .lista-produtos {
+    padding: 0;
+    display: flex;
     list-style: none;
+    flex-wrap: wrap;
   }
 
   .lista-produtos .lista-produtos-item {
-
+    margin: 1% 0;
     display: inline-block;
   }
 

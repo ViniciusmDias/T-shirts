@@ -4,7 +4,7 @@
 
       <ul class="menu-superior">       
           <li v-for="rota in rotas">
-            <router-link :to="rota.path ? rota.path : '/'">
+            <router-link v-if="rota.path != '/product'" :to="rota.path ? rota.path : '/'">
               {{ rota.titulo }}
             </router-link>
           </li>
@@ -21,6 +21,11 @@ export default {
 
         titulo: 'T-Shirts', 
       }
+  },
+  computed: {
+    hide () {
+      return this.$route.path === '/login' || this.$route.path === '/register'; 
+    }
   },
   props: {
 
@@ -48,8 +53,17 @@ export default {
     padding: 0;
   }
   .menu-superior li{
-    padding: 10px 15px;
-    margin: 0 10px; 
+    width: 96px;
+    display: none;
+    flex-wrap: nowrap;
+    padding: 0%;
+    margin: 0 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-superior li:nth-child(5){
+    display: none;
   }
 
 </style>
