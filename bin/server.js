@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-const User = require('./src/models/User');
-const Product = require('./src/models/Product');
+const User = require('../src/models/User');
+const Product = require('../src/models/Product');
 
 mongoose.connect('mongodb+srv://admin:admin123@t-shirts-oelu2.mongodb.net/test?retryWrites=true&w=majority');
 
@@ -14,6 +14,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+//crud user
 app.post('/signup', (req, res, next) => {
   const newUser = new User({
     email: req.body.email,
@@ -58,7 +60,6 @@ app.post('/login', (req, res, next) => {
     })
   })
 })
-
 app.get('/user', (req, res, next) => {
   let token = req.headers.token; //token
   jwt.verify(token, 'secretkey', (err, decoded) => {
@@ -79,13 +80,13 @@ app.get('/user', (req, res, next) => {
   })
 })
 
+//crud products
 app.get('/products', (req, res, next) => {
   Product.find({ }, (err, products) => {
     if (err) return console.log(err)
     return res.status(200).json({
       products
     })
-
   })
 })
 app.post('/', (req, res, next) => {
@@ -108,7 +109,6 @@ app.post('/', (req, res, next) => {
     })
   })
 })
-
 const port = process.env.PORT || 5000;
 
 app.listen(port, (err) => {
