@@ -7,9 +7,6 @@
     <!-- <button class="signup" @click="signup">Criar conta</button> -->
     {{ error }}
     <br/>  
-
-    <h1>Product :{{ nome }}</h1>
-    <h2>your descrição is: {{ descricao }}</h2>
   </div>
 </template>
 <script>
@@ -21,9 +18,6 @@ export default {
     return {
       email: '',
       password: '',
-
-      nome: '',
-      descricao: '',
 
       error: '',
     }

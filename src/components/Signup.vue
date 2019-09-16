@@ -30,8 +30,10 @@ export default {
       }
       axios.post('http://localhost:5000/signup', newUser)
         .then(res => {
-          this.error = '';
-          this.$router.push('/login');
+          if (res.status === 200) {
+            this.error = '';
+            this.$router.push('/login');
+          }
         }, err => {
           console.log(err.response)
           this.error = err.response.data.error

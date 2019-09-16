@@ -83,15 +83,11 @@ app.get('/user', (req, res, next) => {
   })
 })
 
-app.get('/product', (req, res, next) => {
-  Product.find({ }, (err, product) => {
+app.get('/products', (req, res, next) => {
+  Product.find({ }, (err, products) => {
     if (err) return console.log(err)
     return res.status(200).json({
-      title: 'user grabbed',
-      product: {
-        nome: product[0].nome,
-        descricao: product[0].descricao
-      }
+      products
     })
 
   })
