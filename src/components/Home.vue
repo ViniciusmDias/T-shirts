@@ -3,7 +3,7 @@
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Procure um produto digitando uma parte da descrição">
 
     <ul class="lista-produtos">
-        <li class="lista-produtos-item" v-for="product of products">
+        <li class="lista-produtos-item" v-bind:key="product" v-for="product of products">
 
         <meu-painel :titulo="product.nome" :preco="product.preco" :tamanho="product.tamanho" :descricao="product.descricao">
             
@@ -57,6 +57,8 @@ export default {
         this.products = res.data.products;
       })
   },
+
+  
 }
 </script>
 

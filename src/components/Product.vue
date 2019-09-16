@@ -1,14 +1,33 @@
 <template>
   <div>
-    <div class="productsAdd">
-      <p>Nome:  <input type="text" v-model="nome" /> </p> 
-      <p>Preço: <input type="number" v-model="preco" /> </p> 
-      <p>Descrição: <input type="text" v-model="descricao" /> </p>
-      <p>Tamanho: <input type="text" v-model="tamanho" /> </p> 
-      <p>Imagem: <input type="text" v-model="imagem" /> </p> 
-      <button class="" @click="createProduct">Criar Produto</button>
+    <div class="productsAdd form-group needs-validation" novalidate>
+    <h3>Adicionar Produto</h3>
+    <label for="nome" class="col-form-label">Nome</label><input id="nome" class="form-control  form-group" type="text" v-model="nome">
+    <div class="invalid-feedback">
+      Adicione um nome ao produto.
+    </div>
+    <label for="preco" class="col-form-label">Preço</label><input id="preco" class="form-control  form-group" type="text" v-model="preco">
+    <div class="invalid-feedback">
+      Adicione um preço ao produto.
+    </div>
+    <label for="tamanho" class="col-form-label">Tamanho</label><input id="tamanho" class="form-control  form-group" type="text" v-model="tamanho">
+    <div class="invalid-feedback">
+      Coloque um tamanho.
+    </div>
+    <label for="descricao" class="col-form-label">Descrição</label><input id="descricao" class="form-control  form-group" type="text" v-model="descricao">
+    <div class="invalid-feedback">
+      Faça uma breve descrição do seu produto.
+    </div>
+    <label for="imagem" class="col-form-label">Imagem</label><input id="imagem" class="form-control  form-group" type="imagem" v-model="imagem">
+    <div class="invalid-feedback">
+      Coloque uma url da imagem do seu produto.
+    </div>
+    <div class="buttons">
+      <button class="btn btn-primary form-group" @click="createProduct()" type="submit">Adicionar produto</button>
+      <button class="btn btn-primary form-group" @click="voltar()">Voltar</button>
     </div>
     {{ error }}
+  </div>
 
   </div>
 </template>
@@ -44,6 +63,9 @@ export default {
       localStorage.clear();
       this.$router.push('/login');
     },
+    voltar() {
+      this.$router.push('/');
+    },
     createProduct() {
       let newProduct = {
         nome: this.nome,
@@ -52,14 +74,14 @@ export default {
         tamanho: this.tamanho,
         imagem: this.imagem
       }
-    axios.post('http://localhost:5000/', newProduct)
+      axios.post('http://localhost:5000/', newProduct)
       .then(res => {
         this.error = '';
         this.$router.push('/');
       }, err => {
         console.log(err.response)
         this.error = err.response.data.error
-    })
+      })
     }
   }
 }
@@ -67,9 +89,18 @@ export default {
 
 <style scoped>
   .productsAdd {
+    margin: 0 auto;
     width: 35%;
+    min-width: 300px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .productsAdd h3 {
+    width: 100%;
+  }
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 </style>
