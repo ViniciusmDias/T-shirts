@@ -1,8 +1,55 @@
 <template>
-  <div>
-    <div class="productsAdd form-group needs-validation" novalidate>
+<form class="needs-validation productsAdd" novalidate>
+  <div class="form-row">
+      <label for="nome">Nome do produto</label>
+      <input type="text" v-model="nome" class="form-control form-group" id="nome" required>
+      <div class="invalid-feedback form-group">
+      Adicione um nome ao produto.
+      </div>
+  </div>
+  <div class="form-row">
+    <label for="descricao">Descrição</label>
+    <input type="text" v-model="descricao" class="form-control form-group" id="descricao" required>
+    <div class="invalid-feedback form-group">
+    Faça uma breve descrição do seu produto.
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-5">
+      <label for="preco">Preço</label>
+      <input type="number" v-model="preco" class="form-control form-group" id="nome" required>
+      <div class="invalid-feedback form-group">
+      Adicione um preço ao produto.
+      </div>
+    </div>
+    <div class="col-md-5">
+      <label for="tamanho">Tamanho</label>
+      <select v-model="tamanho" class="custom-select mr-sm-2 form-group" id="tamanho">
+        <option value="P">P</option>
+        <option value="M">M</option>
+        <option value="G">G</option>
+      </select>
+      <div class="invalid-feedback form-group">
+      Coloque um tamanho.
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <label for="imagem">Imagem</label>
+    <input type="text" v-model="imagem" class="form-control form-group" id="imagem" required>
+    <div class="invalid-feedback form-group">
+      Coloque uma url da imagem do seu produto.
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="btn btn-primary form-group" @click="createProduct()" type="submit">Adicionar produto</button>
+    <button class="btn btn-primary form-group" @click="voltar()">Voltar</button>
+  </div>
+</form>
+
+  <!-- <form class="productsAdd form-group needs-validation" novalidate>
     <h3>Adicionar Produto</h3>
-    <label for="nome" class="col-form-label">Nome</label><input id="nome" class="form-control  form-group" type="text" v-model="nome">
+    <label for="validationCustom01" class="col-form-label">Nome</label><input id="validationCustom01" class="form-group form-control" type="text" v-model="nome">
     <div class="invalid-feedback">
       Adicione um nome ao produto.
     </div>
@@ -26,12 +73,29 @@
       <button class="btn btn-primary form-group" @click="createProduct()" type="submit">Adicionar produto</button>
       <button class="btn btn-primary form-group" @click="voltar()">Voltar</button>
     </div>
-    {{ error }}
-  </div>
-
-  </div>
+  </form> -->
 </template>
 <script>
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
 import axios from 'axios';
 
 export default {
@@ -41,8 +105,8 @@ export default {
       nome: '',
       preco: '',
       descricao: '',
-      tamanho: '',
-      imagem: ''
+      tamanho: 'P',
+      imagem: '',
     }
   },
   created() {
@@ -76,10 +140,11 @@ export default {
       }
       axios.post('http://localhost:5000/', newProduct)
       .then(res => {
-        this.error = '';
-        this.$router.push('/');
+        if (res.status === 200) {
+          this.error = '';
+          this.$router.push('/');
+        }
       }, err => {
-        console.log(err.response)
         this.error = err.response.data.error
       })
     }
@@ -97,6 +162,15 @@ export default {
   }
   .productsAdd h3 {
     width: 100%;
+  }
+  .form-row {
+    width: 100%;
+    justify-content: space-between;
+    margin-right: 0; 
+    margin-left: 0;
+  }
+  .form-row .col-md-5{
+    padding: 0;
   }
   .buttons {
     width: 100%;
