@@ -3,17 +3,17 @@
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Procure um produto digitando uma parte da descrição">
 
     <ul class="lista-produtos">
-        <li class="lista-produtos-item" v-bind:key="product" v-for="product of products">
+        <li class="lista-produtos-item" v-for="product of produtosComFiltro">
 
         <meu-painel :titulo="product.nome" :preco="product.preco" :tamanho="product.tamanho" :descricao="product.descricao">
             
 
-            <imagem-responsiva :url="product.imagem" :titulo="products.nome" v-meu-transform:scale.animate="1.2"/>
+            <imagem-responsiva :url="product.imagem" :titulo="products.nome" />
             
             
         </meu-painel>
 
-      </li>
+        </li>
     </ul>
   </div>
 </template>

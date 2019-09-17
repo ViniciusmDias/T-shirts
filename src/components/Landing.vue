@@ -8,7 +8,7 @@
       <button class="btn btn-primary form-group" @click="logout">Logout</button>
     </div>
     <ul class="lista-produtos">
-      <li class="lista-produtos-item" v-for="product of products" >
+      <li class="lista-produtos-item" v-bind:key="product" v-for="product of products" >
         <p class="painel-titulo" >{{ product.titulo }}</p>
         <p class="painel-descricao" >{{ product.descricao }}</p>
         <p class="painel-preco" >R$ {{ product.preco }}</p>
@@ -67,7 +67,7 @@ export default {
       this.$router.push('/product');
     },
     deleteProduct() {
-      console.log(this.id)
+      this.id
     },
   }
 }
