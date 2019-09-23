@@ -54,22 +54,21 @@ npm run build
 
 ### Home
 
-https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/home.png
+![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/home.png
 
 
 ### MinhaConta
 
-https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/minhaconta.png
+![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/minhaconta.png
 
 ### Login
 
-https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/login.png
+![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/login.png
 
 ### Signup
 
-https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/signup.png
-```
-npm run build
+![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/signup.png
+
 
 
 
