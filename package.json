@@ -17,7 +17,7 @@
     "express": "^4.16.4",
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.7",
+    "mongoose": "^5.7.1",
     "nodemon": "^1.19.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6"
