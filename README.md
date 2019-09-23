@@ -54,20 +54,20 @@ npm run build
 
 ### Home
 
-![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/home.png
+![home](https://user-images.githubusercontent.com/23238171/65445756-4bd78c00-de09-11e9-8438-719409272a91.png)
 
 
 ### MinhaConta
 
-![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/minhaconta.png
+![minhaconta](https://user-images.githubusercontent.com/23238171/65445792-5d209880-de09-11e9-80a1-7f4b2623dc9a.png)
 
 ### Login
 
-![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/login.png
+![login](https://user-images.githubusercontent.com/23238171/65445814-6a3d8780-de09-11e9-981e-dba770b671d0.png)
 
 ### Signup
 
-![alt text]https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/signup.png
+![signup](https://user-images.githubusercontent.com/23238171/65445816-6c9fe180-de09-11e9-8216-6be4d4465071.png)
 
 
 
