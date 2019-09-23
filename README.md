@@ -49,3 +49,26 @@ Após o desenvolvimento, executar o seguinte comando para enviar o software otim
 npm run build
 ```
 
+
+## Imagens
+
+### Home
+
+https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/home.png
+
+### MinhaConta
+
+https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/minhaconta.png
+
+### Login
+
+https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/login.png
+
+### Signup
+
+https://raw.githubusercontent.com/ViniciusmDias/T-shirts/master/images/signup.png
+```
+npm run build
+
+
+
